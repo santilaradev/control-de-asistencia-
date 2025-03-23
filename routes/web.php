@@ -4,6 +4,7 @@ use App\Http\Controllers\AsistenciaController; // Corregido el nombre
 use App\Http\Controllers\CarbonController;
 use App\Models\Asistencia;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; // Importar Carbon
 
 /*
@@ -79,3 +80,6 @@ Route::get('asistencia', function () {
     // return  "eliminar";
 
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
