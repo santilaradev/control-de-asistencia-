@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Asistencia;
 use Carbon\Carbon;
 
+
 class Asistenciacontroller extends Controller
 {
-
+    
+    
+        
     public function storeWithCarbon(Request $request)
     {
         $asistencia = new Asistencia();
@@ -42,7 +45,7 @@ class Asistenciacontroller extends Controller
 
      public function leer()
      {
-      $asistencia = Asistencia::all();
+      $asistencia = Asistencia::paginate(5);
       return view('asistencia.leer', compact('asistencia'));
      }
 

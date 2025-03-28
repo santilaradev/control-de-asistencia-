@@ -53,10 +53,12 @@ use carbon\carbon;
     </tr>
      @endforeach
   </tbody>
-</table>
-@if(session('success'))
-    <div class="alert alert-success" role="aler"> 
+  </table>
+  @if(session('success'))
+    <div class="col-12 mt-4">
+      <table class="table table-bordered text-white">
+      </table>
         {{ session('success')}}
     </div>
-    @endif
+  @endif
 @endsection

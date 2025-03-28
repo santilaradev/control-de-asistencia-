@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AsistenciaController; // Corregido el nombre
-use App\Http\Controllers\CarbonController;
 use App\Models\Asistencia;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; // Importar Carbon
@@ -17,10 +17,12 @@ use Carbon\Carbon; // Importar Carbon
 | el middleware "web".
 |
 */
-
+// Ruta principal 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 
 // Crear
 Route::get('/asistencia/crear', [AsistenciaController::class, 'crear'])->name('asistencia.crear');
@@ -40,27 +42,31 @@ Route::delete('/asistencia/destroy', [AsistenciaController::class, 'destroy'])->
 
 // Ruta para guardar asistencia con Carbon
 Route::post('/asistencia/storeWithCarbon', [AsistenciaController::class, 'storeWithCarbon'])->name('storeWithCarbon');
-Route::get('/fecha', [CarbonController::class, 'fecha']);
+
+//rutas de usuario
+Route::get('/user', [UserController::class, 'getUserInfo']);
+Route::get('/user/error', [UserController::class, 'errorExample']);
+
 
 // Prueba de creación de asistencia con Carbon
 Route::get('asistencia', function () {
     $asistencia = Asistencia::create([
         'fecha' => Carbon::now()->toDateString(),
         'hora_salida' => Carbon::now()->toTimeString(),
-        'placa_del_vehiculo' => 'ASD344',
+        'placa_del_vehiculo' => 'SDF123',
         'vehiculo' => 'camion',
-        'nombre_conductor' => 'diego payares',
-        'precinto_salida' => '234435',
+        'nombre_conductor' => 'leandrys de la hoz',
+        'precinto_salida' => '345768',
         'color' => 'azul',
-        'ruta' => 'Ruta 3',
-        'muelle' => 'Muelle A',
-        'ACP' => '129324325',
-        'temperatura' => '10.0',
-        'fecha_retorno' => Carbon::now()->addDays(23)->toDateString(),
-        'hora_retorno' => Carbon::now()->addDays(3)->setHour(7)->toTimeString(),
+        'ruta' => '4',
+        'muelle' => 'C',
+        'ACP' => '331231',
+        'temperatura' => '5.0',
+        'fecha_retorno' => Carbon::now()->addDays(5)->toDateString(),
+        'hora_retorno' => Carbon::now()->addDays(5)->setHour(2)->toTimeString(),
         'operacion_nacional' => 'transporte de alimentos',
-        'procedencia' => 'Bogotá',
-        'observaciones' => 'Falta el extintor'
+        'procedencia' => 'Barranquilla',
+        'observaciones' => 'llega 2 minutos tarde'
     ]);
 
     return response()->json([
