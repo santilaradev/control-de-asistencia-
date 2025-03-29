@@ -9,9 +9,13 @@ use Carbon\Carbon;
 
 class Asistenciacontroller extends Controller
 {
-    
-    
-        
+    public function index()
+    {
+        $asistencias = Asistencia::all();
+        return $this->sendResponse($asistencias, 'Lista de asistencias');
+    }
+
+          
     public function storeWithCarbon(Request $request)
     {
         $asistencia = new Asistencia();

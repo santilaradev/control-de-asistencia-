@@ -2,36 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
-    // Método para obtener todos los usuarios activos
-    public function getActiveUsers()
+    public function getUserInfo()
     {
-        // Obtener todos los usuarios activos
-        $activeUsers = User::active()->get();
+        // Simulamos datos de usuario
+        $userData = [
+            'id' => 1,
+            'name' => 'Juan Pérez',
+            'email' => 'juanperez@example.com'
+        ];
 
-        // Retornar los usuarios activos como respuesta JSON
-       // Retornar la vista y pasarle los usuarios activos
-       return view('users.index', compact('activeUsers'));
+        // Usamos el método heredado de BaseController
+        return $this->sendSuccessResponse('Usuario encontrado', $userData);
     }
 
-    public function show($id)
+    public function errorExample()
     {
-        // Buscar al usuario por ID
-        $user = User::find($id);
-
-        // Verificar si el usuario existe
-        if (!$user) {
-            return redirect()->route('users.index')->with('error', 'User not found');
-        }
-
-        // Formatear la fecha de creación
-        $formattedDate = $user->getCreatedAtFormatted();
-
-        // Retornar la vista con el usuario y su fecha formateada
-        return view('users.show', compact('user', 'formattedDate'));
+        // Simulación de un error
+        return $this->sendErrorResponse('No se encontró el usuario');
     }
 }

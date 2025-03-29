@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as Controller;
+use Illuminate\Http\JsonResponse;
 
 class BaseController extends Controller
 {
-    // Respuesta de éxito
-    public function successResponse($data, $message = 'Success', $code = 200)
+    /**
+     * Método para respuestas JSON exitosas.
+     */
+    protected function sendSuccessResponse($message, $data = [], $status = 200): JsonResponse
     {
         return response()->json([
             'success' => true,
             'message' => $message,
-            'data' => $data,
-        ], $code);
+            'data' => $data
+        ], $status);
     }
 
-    // Respuesta de error
-    public function errorResponse($error, $code = 400)
+    /**
+     * Método para respuestas JSON de error.
+     */
+    protected function sendErrorResponse($message, $status = 400): JsonResponse
     {
         return response()->json([
             'success' => false,
-            'message' => $error,
-        ], $code);
+            'message' => $message
+        ], $status);
     }
 }
-

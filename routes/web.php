@@ -4,7 +4,7 @@ use App\Http\Controllers\AsistenciaController; // Corregido el nombre
 use App\Models\Asistencia;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DashboardController;
 use Carbon\Carbon; // Importar Carbon
 
 /*
@@ -21,8 +21,15 @@ use Carbon\Carbon; // Importar Carbon
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/users', [UserController::class, 'index'])->name('user.index');
-Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+
+Route::get('/dashboard', function () {
+    return view('dashboard'); // Asegúrate de que exista la vista "dashboard.blade.php"
+})->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 
 // Crear
 Route::get('/asistencia/crear', [AsistenciaController::class, 'crear'])->name('asistencia.crear');
@@ -50,29 +57,29 @@ Route::get('/user/error', [UserController::class, 'errorExample']);
 
 // Prueba de creación de asistencia con Carbon
 Route::get('asistencia', function () {
-    $asistencia = Asistencia::create([
-        'fecha' => Carbon::now()->toDateString(),
-        'hora_salida' => Carbon::now()->toTimeString(),
-        'placa_del_vehiculo' => 'SDF123',
-        'vehiculo' => 'camion',
-        'nombre_conductor' => 'leandrys de la hoz',
-        'precinto_salida' => '345768',
-        'color' => 'azul',
-        'ruta' => '4',
-        'muelle' => 'C',
-        'ACP' => '331231',
-        'temperatura' => '5.0',
-        'fecha_retorno' => Carbon::now()->addDays(5)->toDateString(),
-        'hora_retorno' => Carbon::now()->addDays(5)->setHour(2)->toTimeString(),
-        'operacion_nacional' => 'transporte de alimentos',
-        'procedencia' => 'Barranquilla',
-        'observaciones' => 'llega 2 minutos tarde'
-    ]);
+//     $asistencia = Asistencia::create([
+//         'fecha' => Carbon::now()->toDateString(),
+//         'hora_salida' => Carbon::now()->toTimeString(),
+//         'placa_del_vehiculo' => 'SDF123',
+//         'vehiculo' => 'camion',
+//         'nombre_conductor' => 'leandrys de la hoz',
+//         'precinto_salida' => '345768',
+//         'color' => 'azul',
+//         'ruta' => '4',
+//         'muelle' => 'C',
+//         'ACP' => '331231',
+//         'temperatura' => '5.0',
+//         'fecha_retorno' => Carbon::now()->addDays(5)->toDateString(),
+//         'hora_retorno' => Carbon::now()->addDays(5)->setHour(2)->toTimeString(),
+//         'operacion_nacional' => 'transporte de alimentos',
+//         'procedencia' => 'Barranquilla',
+//         'observaciones' => 'llega 2 minutos tarde'
+//     ]);
 
-    return response()->json([
-        'message' => 'Asistencia registrada exitosamente',
-        'data' => $asistencia
-    ]);
+//     return response()->json([
+//         'message' => 'Asistencia registrada exitosamente',
+//         'data' => $asistencia
+//     ]);
 
     //ACTUALIZAR
     // $asistencia = Asistencia::find(6);
@@ -86,6 +93,4 @@ Route::get('asistencia', function () {
     // return  "eliminar";
 
 });
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
