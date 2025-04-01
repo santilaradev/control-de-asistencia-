@@ -30,10 +30,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-
 // Crear
 Route::get('/asistencia/crear', [AsistenciaController::class, 'crear'])->name('asistencia.crear');
-Route::post('/asistencia/store', [AsistenciaController::class, 'store'])->name('asistencia.store');
+Route::post('/asistencia', [AsistenciaController::class, 'store'])->name('asistencia.store');
 
 // Leer
 Route::get('/asistencia/leer', [AsistenciaController::class, 'leer'])->name('asistencia.leer');
@@ -45,7 +44,7 @@ Route::put('/asistencia/{id}', [AsistenciaController::class, 'update'])->name('a
 
 // Eliminar
 Route::get('/asistencia/eliminar', [AsistenciaController::class, 'eliminar'])->name('asistencia.eliminar');
-Route::delete('/asistencia/destroy', [AsistenciaController::class, 'destroy'])->name('asistencia.destroy');
+Route::delete('/asistencia/{id}', [AsistenciaController::class, 'destroy'])->name('asistencia.destroy');
 
 // Ruta para guardar asistencia con Carbon
 Route::post('/asistencia/storeWithCarbon', [AsistenciaController::class, 'storeWithCarbon'])->name('storeWithCarbon');

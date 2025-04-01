@@ -13,7 +13,7 @@ class Asistencia extends Model
     protected $fillable = [
         'fecha',
         'hora_salida',
-        'placa_del_vehiculo',
+        'matricula',
         'vehiculo',
         'nombre_conductor',
         'precinto_salida',

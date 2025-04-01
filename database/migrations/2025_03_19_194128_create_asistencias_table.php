@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->time('hora_salida');
-            $table->string('placa_del_vehiculo');
+            $table->string('matricula');
             $table->string('vehiculo');
             $table->string('nombre_conductor');
             $table->string('precinto_salida');
