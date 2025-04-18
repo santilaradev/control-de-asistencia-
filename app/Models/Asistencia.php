@@ -15,6 +15,7 @@ class Asistencia extends Model
         'hora_salida',
         'matricula',
         'vehiculo',
+        'placa_del_vehiculo',
         'nombre_conductor',
         'precinto_salida',
         'color',

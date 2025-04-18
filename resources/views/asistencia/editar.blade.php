@@ -13,11 +13,11 @@
           <div class="row g-3">
             <div class="col-md-4">
               <label class="form-label">Fecha:</label>
-              <input type="date" id="fecha" value="{{ $asistencia->fecha }}" class="form-control" name="fecha" required>
+              <input type="date" id="fecha" value="{{ \Carbon\Carbon::parse($asistencia->fecha)->format('Y-m-d') }}" class="form-control" name="fecha" required>
             </div>
             <div class="col-md-4">
               <label class="form-label">Hora de Salida:</label>
-              <input type="time" id="hora_salida" value="{{ $asistencia->hora_salida }}" class="form-control" name="hora_salida">
+              <input type="time" id="hora_salida" value="{{ $asistencia->hora_salida ? \Carbon\Carbon::parse($asistencia->hora_salida)->format('H:i') : '' }}" class="form-control" name="hora_salida">
             </div>
             <div class="col-md-4">
               <label class="form-label">Placa del Vehículo:</label>
@@ -69,11 +69,11 @@
           <div class="row g-3 mt-1">
             <div class="col-md-4">
               <label class="form-label">Fecha de Retorno:</label>
-              <input type="date" id="fecha_retorno" value="{{ $asistencia->fecha_retorno }}" class="form-control" name="fecha_retorno">
+              <input type="date" id="fecha_retorno" value="{{ $asistencia->fecha_retorno ? \Carbon\Carbon::parse($asistencia->fecha_retorno)->format('Y-m-d') : '' }}" class="form-control" name="fecha_retorno">
             </div>
             <div class="col-md-4">
               <label class="form-label">Hora de Retorno:</label>
-              <input type="time" id="hora_retorno" value="{{ $asistencia->hora_retorno }}" class="form-control" name="hora_retorno">
+              <input type="time" id="hora_retorno" value="{{ $asistencia->hora_retorno ? \Carbon\Carbon::parse($asistencia->hora_retorno)->format('H:i') : '' }}" class="form-control" name="hora_retorno">
             </div>
             <div class="col-md-4">
               <label class="form-label">Operación Nacional:</label>
@@ -101,3 +101,4 @@
     </div>
   </div>
 </div>
+

@@ -5,6 +5,7 @@ use App\Models\Asistencia;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use app\Htpp\Controllers\FiltroController;
 use Carbon\Carbon; // Importar Carbon
 
 /*
@@ -17,9 +18,11 @@ use Carbon\Carbon; // Importar Carbon
 | el middleware "web".
 |
 */
+Route::get('/filtro', [FiltroController::class, 'index']);
+
 // Ruta principal 
 Route::get('/', function () {
-    return view('welcome');
+    return view ('welcome');
 });
 
 Route::get('/dashboard', function () {

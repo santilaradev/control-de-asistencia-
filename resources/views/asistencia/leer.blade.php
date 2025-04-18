@@ -3,6 +3,37 @@
 @php
 use carbon\carbon;
 @endphp
+@extends('layouts.app')
+
+<div class="container">
+    <h1 class="mb-4 text-center">Filtrar Asistencias</h1>
+
+    <!-- Formulario de Filtro -->
+    <form method="GET" action="{{ route('asistencia.leer') }}">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Fecha:</label>
+                <input type="date" name="fecha" class="form-control" value="{{ request('fecha') }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Vehículo:</label>
+                <input type="text" name="vehiculo" class="form-control" value="{{ request('vehiculo') }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Nombre del Conductor:</label>
+                <input type="text" name="nombre_conductor" class="form-control" value="{{ request('nombre_conductor') }}">
+            </div>
+        </div>
+        <div class="row g-3 mt-3">
+            <div class="col-md-4">
+                <label class="form-label">Placa del Vehículo:</label>
+                <input type="text" name="placa_del_vehiculo" class="form-control" value="{{ request('placa_del_vehiculo') }}">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+            </div>
+        </div>
+    </form>
 <h1>Lista de Registros</h1>
 <table class="table table-bordered table-striped bg-light">
 <thead>
@@ -82,6 +113,8 @@ use carbon\carbon;
       </table>
         {{ session('success')}}
     </div>
-
+    <div class="d-flex justify-content-center">
+      {{ $asistencias->links() }}
+     </div>
   @endif
 @endsection

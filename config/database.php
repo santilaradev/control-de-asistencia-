@@ -62,7 +62,7 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-        'mysql_color' => [
+        'color' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST_COLOR', '127.0.0.1'),
             'port' => env('DB_PORT_COLOR', '3306'),
@@ -76,7 +76,7 @@ return [
             'engine' => null,
         ],
 
-        'mysql_conductores' => [
+        'conductores' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST_CONDUCTORES', '127.0.0.1'),
             'port' => env('DB_PORT_CONDUCTORES', '3306'),
@@ -90,21 +90,51 @@ return [
             'engine' => null,
         ],
 
-        'mysql_matricula' => [
+        'matricula' => [
         'driver' => 'mysql',
-        'host' => env('DB_HOST_MATRICULA', '127.0.0.1'),
-        'port' => env('DB_PORT_MATRICULA', '3306'),
-        'database' => env('DB_DATABASE_MATRICULA', 'matricula'),
-        'username' => env('DB_USERNAME_MATRICULA', 'root'),
-        'password' => env('DB_PASSWORD_MATRICULA', ''),
+        'host' => env('DB_MAT_HOST', '127.0.0.1'),
+        'port' => env('DB_MAT_PORT', '3306'),
+        'database' => env('DB_MAT_DATABASE', 'matricula'),
+        'username' => env('DB_MAT_USERNAME', 'root'),
+        'password' => env('DB_MAT_PASSWORD', ''),
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
         'prefix' => '',
         'strict' => true,
         'engine' => null,
-         ],
+        ],
+        
+        'muelle' => [
+        'driver' => 'mysql',
+        'host' => env('DB_MUELLE_HOST', '127.0.0.1'),
+        'port' => env('DB_MUELLE_PORT', '3306'),
+        'database' => env('DB_MUELLE_DATABASE', 'muelle'),
+        'username' => env('DB_MUELLE_USERNAME', 'root'),
+        'password' => env('DB_MUELLE_PASSWORD', ''),
+        'charset' => 'utf8mb4',
+        'collation' => 'utf8mb4_unicode_ci',
+        'prefix' => '',
+        'strict' => true,
+        'engine' => null,
+         ], 
 
-        'mysql_vehiculos' => [
+         'ruta' => [
+        'driver' => 'mysql',
+        'host' => env('DB_RUTA_HOST', '127.0.0.1'),
+        'port' => env('DB_RUTA_PORT', '3306'),
+        'database' => env('DB_RUTA_DATABASE', 'ruta'),
+        'username' => env('DB_RUTA_USERNAME', 'root'),
+        'password' => env('DB_RUTA_PASSWORD', ''),
+        'unix_socket' => env('DB_SOCKET', ''),
+        'charset' => 'utf8mb4',
+        'collation' => 'utf8mb4_unicode_ci',
+        'prefix' => '',
+        'strict' => true,
+        'engine' => null,
+        ],
+
+
+        'vehiculo' => [
         'driver' => 'mysql',
         'host' => env('DB_HOST_VEHICULOS', '127.0.0.1'),
         'port' => env('DB_PORT_VEHICULOS', '3306'),
